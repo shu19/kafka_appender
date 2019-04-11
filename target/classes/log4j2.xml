@@ -3,7 +3,6 @@
 
     <Appenders>
         <Kafka name="kafkaAppender" topic="shubham">
-            <JSONLayout />
             <Property name="bootstrap.servers">localhost:9092</Property>
         </Kafka>
 
