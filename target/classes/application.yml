@@ -1,0 +1,42 @@
+Configutation:
+  name: Default
+  Properties:
+    Property:
+      name: log-path
+      value: logs
+  Appenders:
+    Kafka:
+      name: kafkaAppender
+      topic: shubham
+      Properties:
+        Property:
+          name: bootstrap.servers
+          host: localhost:9092
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: '[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n'
+        Console:
+          name: stderr
+          target: SYSTEM_ERR
+          PatternLayout pattern: '%d{HH:mm:ss.SSS} %-5p [%-7t] %F:%L - %m%n'
+          Filters:
+          ThresholdFilter level: INFO 
+          onMatch: ACCEPT
+    File:
+      name: File_Appender
+      fileName: ${log-path}/logfile.log
+      PatternLayout:
+        pattern: '[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n'
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+      - ref: kafkaAppender
+    Logger:
+    - name: guru.springframework.blog.log4j2yaml
+      level: debug
+      AppenderRef:
+      - ref: File_Appender
+        level: error

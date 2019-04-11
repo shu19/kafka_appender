@@ -3,6 +3,7 @@
 
     <Appenders>
         <Kafka name="kafkaAppender" topic="shubham">
+        	<PatternLayout pattern="%date %message"/>
             <Property name="bootstrap.servers">localhost:9092</Property>
         </Kafka>
 
